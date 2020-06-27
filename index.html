@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>What To Wear Today?</title>
+    <meta name="author" content="Povilas Mecys">
+    <meta name="description" content="What To Wear Today?">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: 0px solid red;
+            transition: all .25s;
+        }
+        
+        :root {
+            font-size: 20px;
+            line-height: 1;
+            font-family: sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #FFF4E5;
+            padding: 5% 2.5%;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #025778;
+            text-transform: uppercase;
+        }
+        
+        p {
+            text-align: center;
+            margin: 2rem 0;
+            color: #00709E;
+        }
+        
+        p span {
+            font-weight: bold;
+            color: #FEA003;
+        }
+        
+        figure {
+            overflow: hidden;
+            height: 400px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        figure img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            margin: auto;
+            object-fit: contain;
+            object-position: center;
+        }
+        
+        nav {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            max-width: 960px;
+            margin: auto;
+            justify-content: center;
+        }
+        
+        nav input {
+            background: #025778;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: .25rem;
+            text-align: center;
+            cursor: pointer;
+            width: calc(100% / 4);
+            margin: .125rem;
+        }
+        
+        nav input:first-of-type {
+            width: 100%;
+            padding: 1.5rem;
+            background: #FEA003;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        nav input:first-of-type:hover {
+            background: #025778;
+        }
+        
+        nav input:hover {
+            background: #FEA003;
+        }
+        
+        footer p {
+            font-size: .8rem;
+            color: #FEA003;
+        }
+        
+        @media only screen and (max-width: 500px) {
+            :root {
+                font-size: 12px;
+            }
+            figure {
+                height: 300px;
+            }
+            nav input {
+                width: calc(100% / 3 - 1rem);
+            }
+        }
+    </style>
+    <script>
+        var outFit = 1;
+
+        function choose() {
+            outFit = Math.floor(1 + Math.random() * 6);
+            document.getElementById('style').src = outFit + '.png';
+            document.getElementById('style').style.height = '100%';
+        }
+
+        function update() {
+            document.getElementById('value').innerHTML = ' ' + outFit;
+        }
+
+        function zoomIn(multiplier) {
+            document.getElementById('style').style.height = parseFloat(document.getElementById('style').style.height) * (multiplier) + "%";
+        }
+
+        function reset() {
+            document.getElementById('style').style.height = '100%';
+        }
+
+        function zoomOut() {
+            document.getElementById('style').style.height = '50%';
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>What to wear today?</h1>
+        <p> You Should Wear Option:<span id="value" type="button" onmousedown="choose();" onmouseup="update();"> Click Below To Find Out </span> </p>
+    </header>
+    <main>
+        <figure> <img id="style" src="1.png"> </figure>
+    </main>
+    <nav>
+        <input type="button" onmousedown="choose();" onmouseup="update();" value="Choose Your Shirt & Pants" />
+        <input type="button" onclick="zoomIn(1.2)" value="Zoom In +">
+        <input type="button" onclick="reset()" value="Reset">
+        <input type="button" onclick="zoomOut()" value="Zoom Out -"> </nav>
+    <footer>
+        <p>By Povilas Mecys for JavaScript - Summer 2020 </p>
+    </footer>
+</body>
+
+</html>
